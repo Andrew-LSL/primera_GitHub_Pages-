@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>version 1</title>
+    <style>
+        body {
+            background-color: #507faf;
+        }
+        #bouncingBallCanvas {
+            display: block;
+            margin: 30px auto;
+            background: #6b2580;
+            border-radius: 10px;
+            border: 8px solid #000; /* Borde negro grueso visible */
+        }
+    </style>
+    <script>
+        
+        window.onload = function() { // Espera a que la ventana cargue completamente antes de ejecutar el código.
+            const canvas = document.getElementById('bouncingBallCanvas'); // Obtiene el elemento canvas por su id.
+            const ctx = canvas.getContext('2d'); // Obtiene el contexto 2D para dibujar en el canvas.
+            const width = canvas.width; // Almacena el ancho del canvas.
+            const height = canvas.height; // Almacena la altura del canvas.
+
+            let x = width / 2; // Posición inicial en X de la pelota (centrada horizontalmente).
+            let y = height / 2; // Posición inicial en Y de la pelota (centrada verticalmente).
+            let dx = 3; // Velocidad de movimiento en el eje X.
+            let dy = 2; // Velocidad de movimiento en el eje Y.
+            const radius = 25; // Radio de la pelota.
+
+            function drawBall() { // Dibuja la pelota en el canvas.
+                ctx.clearRect(0, 0, width, height); // Limpia todo el canvas antes de dibujar.
+                ctx.beginPath(); // Comienza un nuevo trazo.
+                ctx.arc(x, y, radius, 0, Math.PI * 2); // Dibuja un círculo en la posición (x, y) con el radio especificado.
+                ctx.fillStyle = "#ffeb3b"; // Define el color de relleno de la pelota.
+                ctx.fill(); // Rellena el círculo con el color especificado.
+                ctx.strokeStyle = "#fff"; // Define el color del borde de la pelota.
+                ctx.stroke(); // Dibuja el borde del círculo.
+                ctx.closePath(); // Finaliza el trazo actual.
+            }
+
+            function update() { // Actualiza la posición de la pelota y verifica colisiones con los bordes.
+                x += dx; // Actualiza la posición en X sumando la velocidad dx.
+                y += dy; // Actualiza la posición en Y sumando la velocidad dy.
+
+                if (x + radius > width || x - radius < 0) { // Si la pelota toca el borde derecho o izquierdo...
+                    dx = -dx; // Invierte la dirección en X.
+                }
+                if (y + radius > height || y - radius < 0) { // Si la pelota toca el borde superior o inferior...
+                    dy = -dy; // Invierte la dirección en Y.
+                }
+            }
+
+            function animate() { // Función principal de animación.
+                drawBall(); // Dibuja la pelota en su nueva posición.
+                update(); // Actualiza la posición y dirección de la pelota.
+                requestAnimationFrame(animate); // Llama recursivamente para crear una animación continua.
+            }
+
+            animate(); // Inicia la animación.
+        };
+
+    </script>
+    
+</head>
+<body>
+    <h1 style="color: white; text-align: center;">Mi primera pagina web</h1>
+    <canvas id="bouncingBallCanvas" width="400" height="250"></canvas>
+    <h2 style="text-align: center;"> Utilizando la etiqueta canvas </h2>
+    <hr style="width: 260px; margin: 0 auto; border: 2px solid #fff;">
+
+    <br>
+    <h2 style="
+        color: #7e57c2;
+        text-align: center;
+        background: #fff8e1;
+        padding: 5px 0 5px 0;
+        margin: 20px auto 10px auto;
+        border-radius: 12px;
+        max-width: 350px;
+        text-shadow: 0 2px 10px rgba(117, 62, 211, 0.662);
+        border: 2px solid #ffe082;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        letter-spacing: 1px;
+    ">
+        Etiquetas ya obsoletas
+    </h2>
+    <style>
+        .obsolete-list {
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            padding: 24px 32px 16px 32px;
+            background: #fff8e1;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+            border: 2px solid #ffe082;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .obsolete-list li {
+            margin-bottom: 22px;
+            padding: 16px 18px 12px 18px;
+            background: #f3e5f5;
+            border-radius: 8px;
+            border-left: 6px solid #7e57c2;
+            list-style: none;
+            box-shadow: 0 2px 8px rgba(126, 87, 194, 0.425);
+            transition: background 0.2s; /* transición suave al fondo de un elemento HTML, 
+                                            Esto mejora la experiencia visual al evitar cambios bruscos en el fondo.*/
+        }
+        .obsolete-list li:hover {
+            background: #e4d7fa;
+        }
+        .obsolete-list code {
+            background: #eceff1;
+            color: #37474f;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.97em;
+        }
+        .obsolete-list small {
+            display: block;
+            color: #4e4e4e;
+            margin-top: 6px;
+            font-size: 0.98em;
+            line-height: 1.6;
+        }
+        .obsolete-list b {
+            color: #7e57c2;
+        }
+        .obsolete-list .tag {
+            font-weight: bold;
+            color: #512da8;
+            font-size: 1.08em;
+            letter-spacing: 0.5px;
+        }
+        .obsolete-list .example {
+            display: block;
+            margin: 8px 0 0 0;
+            background: #ede7f6;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 0.98em;
+            color: #333;
+            border-left: 3px solid #9575cd;
+            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+        }
+    </style>
+    <ul class="obsolete-list">
+        <li>
+            <span class="tag">&lt;font&gt;</span>
+            <small>
+                <b>Qué hace:</b> Cambia el color, tamaño o tipo de fuente del texto.<br>
+                <b>Reemplazo:</b> CSS (<code>style="color:..."</code>, <code>font-size</code>, etc.)<br>
+                <span class="example">&lt;font color="blue"&gt;Este texto esta utilizando la etiqueta font&lt;/font&gt;</span>
+            </small>
+        </li>
+        <li>
+            <span class="tag">&lt;marquee&gt;</span>
+            <small>
+                <b>Qué hace:</b> Hace que el texto se desplace horizontal o verticalmente.<br>
+                <b>Reemplazo:</b> CSS animaciones o JavaScript.<br>
+                <span class="example">&lt;marquee&gt;Texto en movimiento&lt;/marquee&gt;</span>
+            </small>
+        </li>
+        <li>
+            <span class="tag">&lt;bgsound&gt;</span>
+            <small>
+                <b>Qué hace:</b> Reproduce un sonido de fondo automáticamente.<br>
+                <b>Reemplazo:</b> <code>&lt;audio autoplay loop&gt;</code><br>
+                <span class="example">&lt;bgsound src="fondo.mp3"&gt;</span>
+            </small>
+        </li>
+        <li>
+            <span class="tag">&lt;center&gt;</span>
+            <small>
+                <b>Qué hace:</b> Centra el contenido.<br>
+                <b>Reemplazo:</b> CSS (<code>text-align: center;</code>)<br>
+                <span class="example">&lt;center&gt;Texto centrado&lt;/center&gt;</span>
+            </small>
+        </li>
+        <li>
+            <span class="tag">&lt;applet&gt;</span>
+            <small>
+                <b>Qué hace:</b> Inserta una applet de Java.<br>
+                <b>Reemplazo:</b> <code>&lt;object&gt;</code> o <code>&lt;embed&gt;</code><br>
+                <span class="example">&lt;applet code="MiApplet.class"&gt;&lt;/applet&gt;</span>
+            </small>
+        </li>
+        <li>
+            <span class="tag">&lt;acronym&gt;</span>
+            <small>
+                <b>Qué hace:</b> Define un acrónimo.<br>
+                <b>Reemplazo:</b> <code>&lt;abbr&gt;</code><br>
+                <span class="example">&lt;acronym title="HyperText Markup Language"&gt;HTML&lt;/acronym&gt;</span>
+            </small>
+        </li>
+        <li>
+            <span class="tag">&lt;big&gt;</span>
+            <small>
+                <b>Qué hace:</b> Hace el texto más grande.<br>
+                <b>Reemplazo:</b> CSS (<code>font-size</code>)<br>
+                <span class="example">&lt;big&gt;Texto grande&lt;/big&gt;</span>
+            </small>
+        </li>
+        <li>
+            <span class="tag">&lt;blink&gt;</span>
+            <small>
+                <b>Qué hace:</b> Hace que el texto parpadee.<br>
+                <b>Reemplazo:</b> CSS animaciones.<br>
+                <span class="example">&lt;blink&gt;Texto parpadeando&lt;/blink&gt;</span>
+            </small>
+        </li>
+        <li>
+            <span class="tag">&lt;dir&gt;</span>
+            <small>
+                <b>Qué hace:</b> Lista de directorios.<br>
+                <b>Reemplazo:</b> <code>&lt;ul&gt;</code><br>
+                <span class="example">&lt;dir&gt;&lt;li&gt;Elemento&lt;/li&gt;&lt;/dir&gt;</span>
+            </small>
+        </li>
+        <li>
+            <span class="tag">&lt;frame&gt;, &lt;frameset&gt;, &lt;noframes&gt;</span>
+            <small>
+                <b>Qué hace:</b> Divide la ventana en marcos.<br>
+                <b>Reemplazo:</b> <code>&lt;iframe&gt;</code><br>
+                <span class="example">&lt;frameset cols="50%,50%"&gt;&lt;frame src="a.html"&gt;&lt;frame src="b.html"&gt;&lt;/frameset&gt;</span>
+            </small>
+        </li>
+        <li>
+            <span class="tag">&lt;isindex&gt;</span>
+            <small>
+                <b>Qué hace:</b> Campo de búsqueda simple.<br>
+                <b>Reemplazo:</b> <code>&lt;input type="search"&gt;</code><br>
+                <span class="example">&lt;isindex&gt;</span>
+            </small>
+        </li>
+        <li>
+            <span class="tag">&lt;strike&gt;</span>
+            <small>
+                <b>Qué hace:</b> Texto tachado.<br>
+                <b>Reemplazo:</b> <code>&lt;del&gt;</code> o <code>&lt;s&gt;</code><br>
+                <span class="example">&lt;strike&gt;Texto tachado&lt;/strike&gt;</span>
+            </small>
+        </li>
+        <li>
+            <span class="tag">&lt;tt&gt;</span>
+            <small>
+                <b>Qué hace:</b> Texto en fuente monoespaciada.<br>
+                <b>Reemplazo:</b> CSS (<code>font-family: monospace;</code>) o <code>&lt;code&gt;</code><br>
+                <span class="example">&lt;tt&gt;Texto monoespaciado&lt;/tt&gt;</span>
+            </small>
+        </li>
+        <li>
+            <span class="tag">&lt;u&gt; (como subrayado, ahora CSS)</span>
+            <small>
+                <b>Qué hace:</b> Subraya el texto.<br>
+                <b>Reemplazo:</b> CSS (<code>text-decoration: underline;</code>)<br>
+                <span class="example">&lt;u&gt;Texto subrayado&lt;/u&gt;</span>
+            </small>
+        </li>
+        <li>
+            <span class="tag">&lt;xmp&gt;</span>
+            <small>
+                <b>Qué hace:</b> Muestra texto preformateado y escapa etiquetas HTML.<br>
+                <b>Reemplazo:</b> <code>&lt;pre&gt;</code> y <code>&lt;code&gt;</code><br>
+                <span class="example">&lt;xmp&gt;&amp;lt;b&amp;gt;Texto&amp;lt;/b&amp;gt;&lt;/xmp&gt;</span>
+            </small>
+        </li>
+    </ul>
+    
+    <br>
+
+    <div style="max-width: 700px; margin: 0 auto; padding: 24px 0 0 0;">
+        <h2 style="
+            color: #fff;
+            text-align: center;
+            background: linear-gradient(90deg, #7e57c2 0%, #42a5f5 100%);
+            padding: 12px 0;
+            margin: 0 auto 24px auto;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(66, 165, 245, 0.18);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            letter-spacing: 1px;
+            font-size: 1.5em;
+            text-shadow: 0 2px 10px rgba(66, 165, 245, 0.22);
+            max-width: 500px;
+        ">
+            Video de ejemplo: cómo se importa
+        </h2>
+        <div style="
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: center;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        ">
+            <div style="
+                background: #fff8e1;
+                border-radius: 12px;
+                box-shadow: 0 2px 12px rgba(126, 87, 194, 0.13);
+                padding: 18px 18px 12px 18px;
+                border: 2px solid #ffe082;
+                max-width: 370px;
+                flex: 1 1 340px;
+                text-align: center;
+            ">
+                <iframe width="340" height="192" src="https://www.youtube.com/embed/76RNpYSmf8Q" title="The Pink Panther Show Season 2 | 3-Hour MEGA Compilation | The Pink Panther Show" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 8px; box-shadow: 0 2px 8px #7e57c2;"></iframe>
+                <div style="margin-top: 10px; color: #7e57c2; font-weight: bold; font-size: 1.05em;">
+                    The Pink Panther Show
+                </div>
+            </div>
+            <div style="
+                background: #fff8e1;
+                border-radius: 12px;
+                box-shadow: 0 2px 12px rgba(66, 165, 245, 0.13);
+                padding: 18px 18px 12px 18px;
+                border: 2px solid #ffe082;
+                max-width: 370px;
+                flex: 1 1 340px;
+                text-align: center;
+            ">
+                <iframe width="340" height="192" src="https://www.youtube.com/embed/IOWnKHajp7o" title="PREVIA PARTIDO:  REAL OVIEDO vs FC BARCELONA 🔥| LA LIGA 25/26" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 8px; box-shadow: 0 2px 8px #42a5f5;"></iframe>
+                <div style="margin-top: 10px; color: #1976d2; font-weight: bold; font-size: 1.05em;">
+                    Previa Partido: Real Oviedo vs FC Barcelona
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <audio src="fondo.mp3" autoplay loop hidden></audio> -->
+
+    <h2 style="
+            color: #ffffff;
+            text-align: center;
+            background: linear-gradient(90deg, #c25757 0%, #f5aa42 100%);
+            padding: 12px 0;
+            margin: 0 auto 24px auto;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(66, 165, 245, 0.18);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            letter-spacing: 1px;
+            font-size: 1.5em;
+            text-shadow: 0 2px 10px rgba(66, 165, 245, 0.22);
+            max-width: 500px;
+        ">
+        Che geovani geei
+        </h2>
+
+     <canvas id="canvas"></canvas>
+     
+</body>
+</html>
